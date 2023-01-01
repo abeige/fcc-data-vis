@@ -117,6 +117,6 @@ function barChart(gdp) {
   
   var tooltip = d3.select('#barchart-container')
     .append('div')
-    .attr('id', 'tooltip')
+    .attr('id', 'barchart-tooltip')
     .style('visibility', 'hidden');
 }

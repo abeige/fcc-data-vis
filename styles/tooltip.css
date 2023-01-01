@@ -1,0 +1,5 @@
+#tooltip {
+  position: fixed;
+  display: block;
+  overflow: hidden;
+}

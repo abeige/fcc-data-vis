@@ -7,10 +7,6 @@
 }
 
 #tooltip {
-  position: fixed;
-  display: block;
-  overflow: hidden;
-
   opacity: 0.8;
   background-color: var(--davys-grey);
   border-radius: 5px;
