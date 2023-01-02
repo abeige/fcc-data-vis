@@ -1,5 +1,12 @@
-#tooltip {
+.tooltip {
   position: fixed;
   display: block;
   overflow: hidden;
+  visibility: hidden;
+
+  opacity: 0.8;
+  background-color: black;
+  border-radius: 5px;
+  padding: 5px;
+  color: white;
 }

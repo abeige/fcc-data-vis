@@ -6,9 +6,3 @@
   --cultured: #f5f5f5ff;
 }
 
-#tooltip {
-  background-color: var(--cg-blue);
-  padding: 6px;
-  border-radius: 3px;
-  color: white;
-}

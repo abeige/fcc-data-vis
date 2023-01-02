@@ -5,13 +5,3 @@
 --persian-green: #1ea896ff;
 --mustard: #f6d647ff;
 }
-
-#tooltip {
-  opacity: 0.8;
-  background-color: var(--davys-grey);
-  border-radius: 5px;
-  padding: 5px;
-  color: white;
-  font-family: sans-serif;
-  font-weight: lighter;
-}

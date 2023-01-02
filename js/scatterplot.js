@@ -1,3 +1,5 @@
+{ // start block scope
+
 fetchData().then(scatterplot);
 
 async function fetchData() {
@@ -16,7 +18,7 @@ function scatterplot(data) {
 	  graniteGray: "#605f5e",
 	  cgBlue: "#247ba0",
 	  cultured: "#f5f5f5"
-	}
+	};
 
   const width = 400;
   const height = 300;
@@ -98,6 +100,10 @@ function scatterplot(data) {
     function mouseover() {
       const dot = d3.select(this);
 
+		tooltip
+		  .style('top', (mouseY + 20) + 'px')
+		  .style('left', (mouseX + 20) + 'px');
+
       tooltip.style('visibility', 'visible')
         .attr('data-year', dot.attr('data-xvalue'))
         .html(`${dot.attr('data-name')}, ${dot.attr('data-nationality')}<br>Time: ${dot.attr('data-time')}<br>${dot.attr('data-doping') == '' ? '' : 'Doping: ' + dot.attr('data-doping')}`);
@@ -139,18 +145,11 @@ function scatterplot(data) {
     .attr('font-size', 12);
   
 	// tooltip
-	window.onmousemove = function (e) {
-		var x = e.clientX,
-			y = e.clientY;
-		tooltip
-		  .style('top', (y + 20) + 'px')
-		  .style('left', (x + 20) + 'px');
-	};
-  
   var tooltip = d3.select('#scatterplot-container')
     .append('div')
-    .attr('id', 'scatterplot-tooltip')
+	.attr('class', 'tooltip')
     .style('visibility', 'hidden');
-  
-  console.log(data);
+
 }
+
+} // end block scope

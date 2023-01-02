@@ -4,21 +4,28 @@ title: Charts
 ---
 
 <script src="js/d3.min.js"></script>
+<script>
+	var mouseX, mouseY;
+	window.onmousemove = function (e) {
+		 mouseX = e.clientX;
+			mouseY = e.clientY;
+	};
+</script>
 <link rel="stylesheet" href="styles/tooltip.css" />
 
 <h2>Bar Chart</h2>
 
 <div class="chart-container" id="barchart-container">
 	<h3 class="chart-title">United States GDP</h3>
-	<script src="js/barchart.js"></script>
 	<link rel="stylesheet" href="styles/barchart.css" />
+	<script src="js/barchart.js"></script>
 </div>
 
 <h2>Scatterplot</h2>
 <div class="chart-container" id="scatterplot-container">
 	<h3 class="chart-title">Doping in Professional Bicycle Racing</h3>
-	<script src="js/scatterplot.js"></script>
 	<link rel="stylesheet" href="styles/barchart.css" />
+	<script src="js/scatterplot.js"></script>
 </div>
 
 <h2>Heatmap</h2>

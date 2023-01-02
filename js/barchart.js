@@ -1,11 +1,4 @@
-// https://coolors.co/4c5454-ff715b-ffffff-1ea896-f6d647
-const color = {
-  davysGrey: '#4c5454',
-  bittersweet: '#ff715b',
-  white: '#ffffff',
-  persianGreen: '#1ea896',
-  mustard: '#f6d647'
-};
+{ // start block scope
 
 fetchData().then(barChart);
 
@@ -18,6 +11,15 @@ async function fetchData() {
 }
 
 function barChart(gdp) {
+	// https://coolors.co/4c5454-ff715b-ffffff-1ea896-f6d647
+	const color = {
+	  davysGrey: '#4c5454',
+	  bittersweet: '#ff715b',
+	  white: '#ffffff',
+	  persianGreen: '#1ea896',
+	  mustard: '#f6d647'
+	};
+
   // constants
   const width = 400;
   const height = 200;
@@ -93,6 +95,11 @@ function barChart(gdp) {
       const bar = d3.select(this);
 
       bar.attr('fill', color.bittersweet);
+
+
+		tooltip
+		  .style('top', (mouseY + 20) + 'px')
+		  .style('left', (mouseX + 20) + 'px');
       
       tooltip.style('visibility', 'visible')
         .attr('data-date', bar.attr('data-date'))
@@ -107,16 +114,10 @@ function barChart(gdp) {
   }
   
   // tooltip
-  window.onmousemove = function (e) {
-    var x = e.clientX,
-        y = e.clientY;
-    tooltip
-      .style('top', (y + 20) + 'px')
-      .style('left', (x + 20) + 'px');
-  };
-  
   var tooltip = d3.select('#barchart-container')
     .append('div')
-    .attr('id', 'barchart-tooltip')
+	.attr('class', 'tooltip')
     .style('visibility', 'hidden');
 }
+
+} // end block scope
