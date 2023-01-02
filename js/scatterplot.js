@@ -21,7 +21,7 @@
     };
 
     const width = 400;
-    const height = 300;
+    const height = 200;
     const margin = { top: 10, left: 70, bottom: 45, right: 15 };
     const totalWidth = width + margin.left + margin.right;
     const totalHeight = height + margin.top + margin.bottom;
