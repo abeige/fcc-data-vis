@@ -4,15 +4,47 @@ title: Charts
 ---
 
 <script src="js/d3.min.js"></script>
-<script src="js/main.js"></script>
+<script src="https://unpkg.com/topojson-client@3.1.0"></script>
+<script>
+	var mouseX, mouseY;
+	window.onmousemove = function (e) {
+		mouseX = e.clientX;
+		mouseY = e.clientY;
+	};
+</script>
+<link rel="stylesheet" href="styles/tooltip.css" />
 
-<h1>Bar Chart</h1>
+<h2>Bar Chart</h2>
 
-<h1>Scatterplot</h1>
+<div class="chart-container" id="barchart-container">
+	<h3 class="chart-title">United States GDP</h3>
+	<link rel="stylesheet" href="styles/barchart.css" />
+	<script src="js/barchart.js"></script>
+</div>
 
-<h1>Heatmap</h1>
+<h2>Scatterplot</h2>
+<div class="chart-container" id="scatterplot-container">
+	<h3 class="chart-title">Doping in Professional Bicycle Racing</h3>
+	<link rel="stylesheet" href="styles/barchart.css" />
+	<script src="js/scatterplot.js"></script>
+</div>
 
-<h1>Choropleth Map</h1>
+<h2>Heatmap</h2>
+<div class="chart-container" id="heatmap-container">
+	<h3 class="chart-title">Monthly Global Land-Surface Temperature</h3>
+	<h4 class="chart-subtitle">1753-2015; base temperature 8.66° C</h4>
+	<script src="js/heatmap.js"></script>
+</div>
 
-<h1>Treemap</h1>
+<h2>Choropleth Map</h2>
+<div class="chart-container" id="choropleth-container">
+	<h3 class="chart-title">United States Educational Attainment</h3>
+	<h4 class="chart-subtitle">Percentage of adults 25 and older with a bachelor's degree or higher (2010-2014)</h4>
+	<script src="js/choropleth.js"></script>
+</div>
+
+<h2>Treemap</h2>
+<div class="chart-container" id="treemap-container">
+	<h3 class="chart-title"></h3>
+</div>
 
