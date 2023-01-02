@@ -22,7 +22,7 @@ function scatterplot(data) {
 
   const width = 400;
   const height = 300;
-  const margin = {top:10, left:70, bottom:30, right:15};
+  const margin = {top:10, left:70, bottom:45, right:15};
   const totalWidth = width + margin.left + margin.right;
   const totalHeight = height + margin.top + margin.bottom;
   
@@ -58,6 +58,12 @@ function scatterplot(data) {
     .attr('id', 'x-axis')
     .attr('class', 'axis')
     .call(xAxis);
+	xAxisGroup.append("text")
+		.text("Date")
+		.attr("x", width/2)
+		.attr("y", 35)
+		.attr("fill", "black")
+		.attr("text-anchor", "middle");
   
   // y axis
   const yAxis = d3.axisLeft(yScale)
@@ -117,32 +123,32 @@ function scatterplot(data) {
   var legend = svg.append('g')
     .attr('id', 'legend');
   legend.append('rect')
-    .attr('x', 450)
+    .attr('x', 350)
     .attr('y', 50)
-    .attr('width', 100)
+    .attr('width', 95)
     .attr('height', 50)
     .attr('fill', color.cultured)
     .attr('stroke', 'black');
   legend.append('circle')
-    .attr('cx', 465)
+    .attr('cx', 365)
     .attr('cy', 65)
-    .attr('r', 4)
+    .attr('r', 3)
     .attr('fill', color.royalBlueDark);
   legend.append('text')
     .text('No Doping')
-    .attr('x', 480)
-    .attr('y', 69)
-    .attr('font-size', 12);
+    .attr('x', 375)
+    .attr('y', 68)
+    .attr('font-size', 10);
   legend.append('circle')
-    .attr('cx', 465)
+    .attr('cx', 365)
     .attr('cy', 85)
-    .attr('r', 4)
+    .attr('r', 3)
     .attr('fill', color.redSalsa);
   legend.append('text')
     .text('Doping')
-    .attr('x', 480)
-    .attr('y', 89)
-    .attr('font-size', 12);
+    .attr('x', 375)
+    .attr('y', 88)
+    .attr('font-size', 10);
   
 	// tooltip
   var tooltip = d3.select('#scatterplot-container')

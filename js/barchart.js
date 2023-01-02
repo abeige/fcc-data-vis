@@ -23,7 +23,7 @@ function barChart(gdp) {
   // constants
   const width = 400;
   const height = 200;
-  const margin = {top:10, left:60, bottom:30, right:15};
+  const margin = {top:10, left:60, bottom:45, right:15};
   const totalWidth = width + margin.left + margin.right;
   const totalHeight = height + margin.top + margin.bottom;
   
@@ -58,6 +58,12 @@ function barChart(gdp) {
     .attr('id', 'x-axis')
     .attr('class', 'axis')
     .call(xAxis);
+	xAxisGroup.append("text")
+		.text("Date")
+		.attr("x", width/2)
+		.attr("y", 35)
+		.attr("fill", "black")
+		.attr("text-anchor", "middle");
 
   // y axis
   const yAxis = d3.axisLeft(yScale);
