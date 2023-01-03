@@ -1,6 +1,6 @@
 { // start block scope
-	const monthNames = [ "January", "February", "March", "April", "May", "June",
-		"July", "August", "September", "October", "November", "December" ];
+	const monthNames = ["January", "February", "March", "April", "May", "June",
+		"July", "August", "September", "October", "November", "December"];
 
 	// https://coolors.co/ff686b-c0e0de-4d5061-5c80bc-fec601
 	const color = {
@@ -24,10 +24,10 @@
 	function heatmap(data) {
 		const width = 400;
 		const height = 200;
-		const margin = {top:5, left:100, bottom:80, right:15};
+		const margin = { top: 5, left: 100, bottom: 80, right: 15 };
 		const totalWidth = width + margin.left + margin.right;
 		const totalHeight = height + margin.top + margin.bottom;
-		
+
 		// svg
 		var svg = d3.select('#heatmap-container')
 			.append('svg')
@@ -37,7 +37,7 @@
 		// chart group
 		const g = svg.append('g')
 			.attr('transform', `translate(${margin.left}, ${margin.top})`);
-		
+
 		// x scale
 		const xScale = d3.scaleBand()
 			.domain(data.monthlyVariance.map(d => d.year))
@@ -47,7 +47,7 @@
 		const yScale = d3.scaleBand()
 			.domain(monthNames)
 			.range([0, height]);
-		
+
 		// color scale
 		var colorScale = d3.scaleSequential()
 			.interpolator(d3.interpolateRdYlBu)
@@ -63,12 +63,12 @@
 			.attr('class', 'axis')
 			.call(xAxis);
 		xAxisGroup.append("text")
-			.attr('x', width/2)
+			.attr('x', width / 2)
 			.attr('y', 40)
 			.attr('fill', 'black')
 			.attr('text-anchor', 'middle')
 			.text('Year');
-		
+
 		// y axis
 		const yAxis = d3.axisLeft(yScale)
 			.tickFormat(d => d);
@@ -77,13 +77,13 @@
 			.attr('class', 'axis')
 			.call(yAxis);
 		yAxisGroup.append("text")
-			.attr('x', -height/2)
+			.attr('x', -height / 2)
 			.attr('y', -70)
 			.attr('fill', 'black')
 			.attr('text-anchor', 'middle')
 			.attr('transform', 'rotate(-90)')
 			.text('Month');
-		
+
 		// rectangles
 		const rects = renderData();
 		function renderData() {
@@ -91,27 +91,27 @@
 				.selectAll('rect')
 				.data(data.monthlyVariance)
 				.join('rect')
-					.attr('x', d => xScale(d.year))
-					.attr('y', d => yScale(monthNames[d.month - 1]))
-					.attr('width', xScale.bandwidth())
-					.attr('height', yScale.bandwidth())
-					.attr('fill', d => colorScale(d.variance))
-					.attr('class', 'cell')
-					.attr('data-month', d => d.month - 1)
-					.attr('data-year', d => d.year)
-					.attr('data-temp', d => d.variance)
+				.attr('x', d => xScale(d.year))
+				.attr('y', d => yScale(monthNames[d.month - 1]))
+				.attr('width', xScale.bandwidth())
+				.attr('height', yScale.bandwidth())
+				.attr('fill', d => colorScale(d.variance))
+				.attr('class', 'cell')
+				.attr('data-month', d => d.month - 1)
+				.attr('data-year', d => d.year)
+				.attr('data-temp', d => d.variance)
 				.on('mouseover', mouseover)
 				.on('mouseout', mouseout);
-			 
+
 			return rects;
-			
+
 			function mouseover() {
 				d3.select(this).style('stroke', 'black');
-				
+
 				const rect = d3.select(this);
 				const m = monthNames[rect.attr('data-month')];
 				const y = rect.attr('data-year');
-				const t = d3.format(".2f")( data.baseTemperature + parseFloat(rect.attr('data-temp')) ) + '° C';
+				const t = d3.format(".2f")(data.baseTemperature + parseFloat(rect.attr('data-temp'))) + '° C';
 				const v = rect.attr('data-temp')
 
 				tooltip
@@ -122,13 +122,13 @@
 					.attr('data-year', rect.attr('data-year'))
 					.html(`${m} ${y}: ${t}<br>Variance: ${v}`);
 			}
-			
+
 			function mouseout() {
 				d3.select(this).style('stroke', null);
 				tooltip.style('visibility', 'hidden');
 			}
 		}
-	 
+
 		// legend
 		const legend = renderLegend();
 		function renderLegend() {
@@ -141,8 +141,8 @@
 			const legendTicks = d3.range(8).map(scaleLegendTicks);
 
 			var rectY = 250,
-					boxWidth = 20,
-					boxHeight = 10;
+				boxWidth = 20,
+				boxHeight = 10;
 			legendGroup.selectAll('rect')
 				.data(legendTicks)
 				.join('rect')
@@ -160,17 +160,17 @@
 				.tickFormat(d => d3.format(".1f")(data.baseTemperature + d));
 			legendGroup.append('g')
 				.attr('transform', `translate(${margin.left}, ${rectY + boxHeight})`)
-				.style("font", "8px sans-serif") 
+				.style("font", "8px sans-serif")
 				.call(legendAxis);
-			
+
 			return legendGroup;
 		}
-		
+
 		// tooltip
-		
+
 		var tooltip = d3.select('#heatmap-container')
 			.append('div')
 			.attr('class', 'tooltip')
-			.style('visibility', 'hidden'); 
+			.style('visibility', 'hidden');
 	}
 } // end block scope
