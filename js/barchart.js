@@ -13,11 +13,11 @@
   function barChart(gdp) {
     // https://coolors.co/4c5454-ff715b-ffffff-1ea896-f6d647
     const color = {
-      davysGrey: '#4c5454',
-      bittersweet: '#ff715b',
-      white: '#ffffff',
-      persianGreen: '#1ea896',
-      mustard: '#f6d647'
+      davysGrey: "#4c5454",
+      bittersweet: "#ff715b",
+      white: "#ffffff",
+      persianGreen: "#1ea896",
+      mustard: "#f6d647"
     };
 
     // constants
@@ -28,14 +28,14 @@
     const totalHeight = height + margin.top + margin.bottom;
 
     // svg
-    var svg = d3.select('#barchart-container')
-      .append('svg')
-      .attr('viewBox', `0 0 ${totalWidth} ${totalHeight}`)
-      .attr('id', 'chart');
+    var svg = d3.select("#barchart-container")
+      .append("svg")
+      .attr("viewBox", `0 0 ${totalWidth} ${totalHeight}`)
+      .attr("id", "chart");
 
     // chart group
-    var g = svg.append('g')
-      .attr('transform', `translate(${margin.left}, ${margin.top})`);
+    var g = svg.append("g")
+      .attr("transform", `translate(${margin.left}, ${margin.top})`);
 
     // x scale
     const parseTime = d3.timeParse("%Y-%m-%d");
@@ -53,10 +53,10 @@
 
     // x axis
     const xAxis = d3.axisBottom(xScale);
-    var xAxisGroup = g.append('g')
-      .attr('transform', `translate(0, ${height})`)
-      .attr('id', 'x-axis')
-      .attr('class', 'axis')
+    var xAxisGroup = g.append("g")
+      .attr("transform", `translate(0, ${height})`)
+      .attr("id", "x-axis")
+      .attr("class", "axis")
       .call(xAxis);
     xAxisGroup.append("text")
       .text("Date")
@@ -67,63 +67,63 @@
 
     // y axis
     const yAxis = d3.axisLeft(yScale);
-    var yAxisGroup = g.append('g')
-      .attr('id', 'y-axis')
-      .attr('class', 'axis')
+    var yAxisGroup = g.append("g")
+      .attr("id", "y-axis")
+      .attr("class", "axis")
       .call(yAxis);
     yAxisGroup.append("text")
       .attr("x", -height / 2)
       .attr("y", -50)
       .attr("fill", color.davysGrey)
       .attr("text-anchor", "middle")
-      .attr('transform', 'rotate(-90)')
+      .attr("transform", "rotate(-90)")
       .text("GDP (Billions)");
 
     // bars
     var bars = addBars(g, gdp.data)
     function addBars(g, data) {
-      return g.selectAll('rect')
+      return g.selectAll("rect")
         .data(data)
         .enter()
-        .append('rect')
-        .attr('class', 'bar')
-        .attr('x', d => xScale(parseTime(d[0])))
-        .attr('y', d => yScale(d[1]))
-        .attr('width', 3)
-        .attr('height', d => height - yScale(d[1]))
-        .attr('fill', color.persianGreen)
-        .attr('data-date', d => d[0])
-        .attr('data-gdp', d => d[1])
-        .on('mouseover', mouseover)
-        .on('mouseout', mouseout);
+        .append("rect")
+        .attr("class", "bar")
+        .attr("x", d => xScale(parseTime(d[0])))
+        .attr("y", d => yScale(d[1]))
+        .attr("width", 3)
+        .attr("height", d => height - yScale(d[1]))
+        .attr("fill", color.persianGreen)
+        .attr("data-date", d => d[0])
+        .attr("data-gdp", d => d[1])
+        .on("mouseover", mouseover)
+        .on("mouseout", mouseout);
 
       function mouseover() {
         const bar = d3.select(this);
 
-        bar.attr('fill', color.bittersweet);
+        bar.attr("fill", color.bittersweet);
 
 
         tooltip
-          .style('top', (mouseY + 20) + 'px')
-          .style('left', (mouseX + 20) + 'px');
+          .style("top", (mouseY + 20) + "px")
+          .style("left", (mouseX + 20) + "px");
 
-        tooltip.style('visibility', 'visible')
-          .attr('data-date', bar.attr('data-date'))
-          .html(`${bar.attr('data-date')}<br>$${bar.attr('data-gdp')} billion`);
+        tooltip.style("visibility", "visible")
+          .attr("data-date", bar.attr("data-date"))
+          .html(`${bar.attr("data-date")}<br>$${bar.attr("data-gdp")} billion`);
       }
 
       function mouseout() {
-        d3.select(this).attr('fill', color.persianGreen);
-        tooltip.style('visibility', 'hidden');
+        d3.select(this).attr("fill", color.persianGreen);
+        tooltip.style("visibility", "hidden");
       }
 
     }
 
     // tooltip
-    var tooltip = d3.select('#barchart-container')
-      .append('div')
-      .attr('class', 'tooltip')
-      .style('visibility', 'hidden');
+    var tooltip = d3.select("#barchart-container")
+      .append("div")
+      .attr("class", "tooltip")
+      .style("visibility", "hidden");
   }
 
 } // end block scope

@@ -27,14 +27,14 @@
     const totalHeight = height + margin.top + margin.bottom;
 
     // svg
-    var svg = d3.select('#scatterplot-container')
-      .append('svg')
-      .attr('viewBox', `0 0 ${totalWidth} ${totalHeight}`)
-      .attr('id', 'chart')
+    var svg = d3.select("#scatterplot-container")
+      .append("svg")
+      .attr("viewBox", `0 0 ${totalWidth} ${totalHeight}`)
+      .attr("id", "chart")
 
     // chart group
-    var g = svg.append('g')
-      .attr('transform', `translate(${margin.left}, ${margin.top})`);
+    var g = svg.append("g")
+      .attr("transform", `translate(${margin.left}, ${margin.top})`);
 
     // x scale
     const xScale = d3.scaleLinear()
@@ -53,10 +53,10 @@
     // x axis
     const xAxis = d3.axisBottom(xScale)
       .tickFormat(d => d);
-    var xAxisGroup = g.append('g')
-      .attr('transform', `translate(0, ${height})`)
-      .attr('id', 'x-axis')
-      .attr('class', 'axis')
+    var xAxisGroup = g.append("g")
+      .attr("transform", `translate(0, ${height})`)
+      .attr("id", "x-axis")
+      .attr("class", "axis")
       .call(xAxis);
     xAxisGroup.append("text")
       .text("Date")
@@ -67,39 +67,39 @@
 
     // y axis
     const yAxis = d3.axisLeft(yScale)
-      .tickFormat(d => d3.timeFormat('%M:%S')(d));
-    var yAxisGroup = g.append('g')
-      .attr('id', 'y-axis')
-      .attr('class', 'axis')
+      .tickFormat(d => d3.timeFormat("%M:%S")(d));
+    var yAxisGroup = g.append("g")
+      .attr("id", "y-axis")
+      .attr("class", "axis")
       .call(yAxis);
     yAxisGroup.append("text")
-      .attr('x', -height / 2)
-      .attr('y', -50)
-      .attr('fill', 'black')
-      .attr('text-anchor', 'middle')
-      .attr('transform', 'rotate(-90)')
-      .text('Time (minutes)');
+      .attr("x", -height / 2)
+      .attr("y", -50)
+      .attr("fill", "black")
+      .attr("text-anchor", "middle")
+      .attr("transform", "rotate(-90)")
+      .text("Time (minutes)");
 
     // dots
     const dots = renderData(g, data);
     function renderData(group, data) {
-      const dots = g.selectAll('circle')
+      const dots = g.selectAll("circle")
         .data(data)
         .enter()
-        .append('circle')
-        .attr('cx', d => xScale(d.Year))
-        .attr('cy', d => yScale(parseTime(d.Time)))
-        .attr('r', 3)
-        .attr('fill', d => d.Doping == '' ? color.royalBlueDark : color.redSalsa)
-        .attr('class', 'dot')
-        .attr('data-xvalue', d => d.Year)
-        .attr('data-yvalue', d => parseTime(d.Time))
-        .attr('data-time', d => d.Time)
-        .attr('data-name', d => d.Name)
-        .attr('data-nationality', d => d.Nationality)
-        .attr('data-doping', d => d.Doping)
-        .on('mouseover', mouseover)
-        .on('mouseout', mouseout);
+        .append("circle")
+        .attr("cx", d => xScale(d.Year))
+        .attr("cy", d => yScale(parseTime(d.Time)))
+        .attr("r", 3)
+        .attr("fill", d => d.Doping == "" ? color.royalBlueDark : color.redSalsa)
+        .attr("class", "dot")
+        .attr("data-xvalue", d => d.Year)
+        .attr("data-yvalue", d => parseTime(d.Time))
+        .attr("data-time", d => d.Time)
+        .attr("data-name", d => d.Name)
+        .attr("data-nationality", d => d.Nationality)
+        .attr("data-doping", d => d.Doping)
+        .on("mouseover", mouseover)
+        .on("mouseout", mouseout);
 
       return dots;
 
@@ -107,54 +107,54 @@
         const dot = d3.select(this);
 
         tooltip
-          .style('top', (mouseY + 20) + 'px')
-          .style('left', (mouseX + 20) + 'px');
+          .style("top", (mouseY + 20) + "px")
+          .style("left", (mouseX + 20) + "px");
 
-        tooltip.style('visibility', 'visible')
-          .attr('data-year', dot.attr('data-xvalue'))
-          .html(`${dot.attr('data-name')}, ${dot.attr('data-nationality')}<br>Time: ${dot.attr('data-time')}<br>${dot.attr('data-doping') == '' ? '' : 'Doping: ' + dot.attr('data-doping')}`);
+        tooltip.style("visibility", "visible")
+          .attr("data-year", dot.attr("data-xvalue"))
+          .html(`${dot.attr("data-name")}, ${dot.attr("data-nationality")}<br>Time: ${dot.attr("data-time")}<br>${dot.attr("data-doping") == "" ? "" : "Doping: " + dot.attr("data-doping")}`);
       }
 
       function mouseout() {
-        tooltip.style('visibility', 'hidden');
+        tooltip.style("visibility", "hidden");
       }
     }
 
-    var legend = svg.append('g')
-      .attr('id', 'legend');
-    legend.append('rect')
-      .attr('x', 350)
-      .attr('y', 50)
-      .attr('width', 95)
-      .attr('height', 50)
-      .attr('fill', color.cultured)
-      .attr('stroke', 'black');
-    legend.append('circle')
-      .attr('cx', 365)
-      .attr('cy', 65)
-      .attr('r', 3)
-      .attr('fill', color.royalBlueDark);
-    legend.append('text')
-      .text('No Doping')
-      .attr('x', 375)
-      .attr('y', 68)
-      .attr('font-size', 10);
-    legend.append('circle')
-      .attr('cx', 365)
-      .attr('cy', 85)
-      .attr('r', 3)
-      .attr('fill', color.redSalsa);
-    legend.append('text')
-      .text('Doping')
-      .attr('x', 375)
-      .attr('y', 88)
-      .attr('font-size', 10);
+    var legend = svg.append("g")
+      .attr("id", "legend");
+    legend.append("rect")
+      .attr("x", 350)
+      .attr("y", 50)
+      .attr("width", 95)
+      .attr("height", 50)
+      .attr("fill", color.cultured)
+      .attr("stroke", "black");
+    legend.append("circle")
+      .attr("cx", 365)
+      .attr("cy", 65)
+      .attr("r", 3)
+      .attr("fill", color.royalBlueDark);
+    legend.append("text")
+      .text("No Doping")
+      .attr("x", 375)
+      .attr("y", 68)
+      .attr("font-size", 10);
+    legend.append("circle")
+      .attr("cx", 365)
+      .attr("cy", 85)
+      .attr("r", 3)
+      .attr("fill", color.redSalsa);
+    legend.append("text")
+      .text("Doping")
+      .attr("x", 375)
+      .attr("y", 88)
+      .attr("font-size", 10);
 
     // tooltip
-    var tooltip = d3.select('#scatterplot-container')
-      .append('div')
-      .attr('class', 'tooltip')
-      .style('visibility', 'hidden');
+    var tooltip = d3.select("#scatterplot-container")
+      .append("div")
+      .attr("class", "tooltip")
+      .style("visibility", "hidden");
 
   }
 
