@@ -24,8 +24,6 @@
 	}
 
 	function choropleth(obj) {
-		console.log("here");
-
 		const { map, data } = obj;
 
 		var width = 1000,
@@ -86,7 +84,6 @@
 					.domain([0, 4])
 					.range(d3.extent(data, (d) => d.bachelorsOrHigher));
 				const legendTicks = d3.range(5).map(scaleLegendTicks);
-				console.log(legendTicks);
 
 				legendGroup
 					.selectAll("rect")
