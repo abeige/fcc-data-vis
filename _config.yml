@@ -20,9 +20,8 @@
 
 title: freeCodeCamp Data Visualization
 author: Adam Beigel
-email: abeige2 @ uic . edu
-description: >- # this means to ignore newlines until "baseurl:"
-  Description of my website.
+email: abeige2@uic.edu
+# description: >- # this means to ignore newlines until "baseurl:"
 baseurl: "/fcc-data-vis" # the subpath of your site, e.g. /blog
 url: "https://abeige.github.io" # the base hostname & protocol for your site, e.g. http://example.com
 github_username:  abeige
